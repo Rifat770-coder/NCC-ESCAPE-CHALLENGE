@@ -4,8 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+import nccLogo from "@/public/NCC NEW Version Logo.png";
 import {
-  ShieldCheck,
   LogOut,
   Users,
   Activity,
@@ -173,12 +174,16 @@ export default function AdminDashboard() {
     <div className="relative min-h-screen">
       <BackgroundFX density="low" />
       <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between gap-3 flex-wrap px-4 py-4 sm:px-8">
-        <div className="flex items-center gap-2 font-display text-base font-bold tracking-[0.3em] text-white">
-          <span className="grid h-8 w-8 place-items-center rounded-md border border-cyber-400/40 bg-cyber-400/10 text-cyber-300">
-            <ShieldCheck className="h-4 w-4" />
-          </span>
-          NCC - CONTROL
-        </div>
+        <Link href="/" className="flex items-center gap-2 font-display text-base font-bold tracking-[0.3em] text-white">
+          <Image
+            src={nccLogo}
+            alt="NITER Computer Club logo"
+            width={44}
+            height={48}
+            className="h-11 w-10 shrink-0 rounded-sm object-contain sm:h-12 sm:w-11"
+          />
+          NCC · ESCAPE
+        </Link>
         <div className="flex flex-wrap items-center gap-2">
           <Link href="/leaderboard" className="btn-ghost text-xs">
             <Trophy className="h-4 w-4" /> Leaderboard
