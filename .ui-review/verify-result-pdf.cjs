@@ -7,7 +7,7 @@ body = body.replace('const { jsPDF } = await import("jspdf");', '');
 body = body.replace('await pdf.save(`ncc-escape-${filename}.pdf`, { returnPromise: true });', 'fs.writeFileSync(`.ui-review/result-pdf-${data.status}.pdf`, Buffer.from(pdf.output("arraybuffer")));');
 const compiled = ts.transpile(body, {target:ts.ScriptTarget.ES2022});
 const formatTime = ms => ms == null ? '00:00' : `${Math.floor(ms/60000).toString().padStart(2,'0')}:${Math.floor(ms/1000)%60 < 10 ? '0' : ''}${Math.floor(ms/1000)%60}`;
-const fetch = async () => ({ok:true,arrayBuffer:async()=>{const b=fs.readFileSync('public/ncc-result-logo.png');return b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength);}});
+const fetch = async () => ({ok:true,arrayBuffer:async()=>{const b=fs.readFileSync('public/ncc-result-template.png');return b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength);}});
 const downloading=false;
 const setDownloading=()=>{};
 const push=(message,type)=>{if(type==='error')throw Error(message);};

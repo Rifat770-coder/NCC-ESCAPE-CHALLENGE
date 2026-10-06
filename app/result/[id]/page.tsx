@@ -41,50 +41,42 @@ export default function ResultPage() {
     setDownloading(true);
     try {
       const { jsPDF } = await import("jspdf");
-      const pdf = new jsPDF({ orientation: "portrait", unit: "pt", format: [600, 600] });
+      const pdf = new jsPDF({ orientation: "portrait", unit: "pt", format: [1254, 1254] });
       const title = data.status === "COMPLETED" ? "MISSION COMPLETED" : data.status === "FAILED" ? "MISSION FAILED" : "ATTEMPT RECORD";
       pdf.setProperties({ title: "NCC Escape Challenge Result", author: "NITER Computer Club" });
-      pdf.setFillColor(5, 5, 5);
-      pdf.rect(0, 0, 600, 600, "F");
-      pdf.setDrawColor(239, 255, 0);
-      pdf.setLineWidth(1);
-      pdf.roundedRect(24, 24, 552, 552, 20, 20, "S");
-      pdf.setDrawColor(70, 70, 70);
-      pdf.roundedRect(36, 36, 528, 528, 16, 16, "S");
 
-      const logoResponse = await fetch("/ncc-result-logo.png");
-      if (!logoResponse.ok) throw new Error("Could not load NCC logo");
-      const logo = new Uint8Array(await logoResponse.arrayBuffer());
-      const logoProperties = pdf.getImageProperties(logo);
-      const logoHeight = 116;
-      const logoWidth = logoHeight * logoProperties.width / logoProperties.height;
-      pdf.addImage(logo, "PNG", (600 - logoWidth) / 2, 46, logoWidth, logoHeight);
+      // Preserve the supplied artwork, including its logo, colours and frame.
+      const templateResponse = await fetch("/ncc-result-template.png");
+      if (!templateResponse.ok) throw new Error("Could not load result template");
+      const template = new Uint8Array(await templateResponse.arrayBuffer());
+      pdf.addImage(template, "PNG", 0, 0, 1254, 1254);
 
-      function centered(text: string, y: number, size: number, color: [number, number, number], bold = false) {
+      function field(text: string, box: [number, number, number, number], baseline: number,
+        size: number, color: [number, number, number], bold = false) {
+        const [x, y, width, height] = box;
+        // Replace the sample value inside its existing frame.
+        pdf.setFillColor(0, 0, 0);
+        pdf.rect(x, y, width, height, "F");
         pdf.setFont("helvetica", bold ? "bold" : "normal");
         pdf.setFontSize(size);
-        // Fit long participant names and batch values inside the card.
-        const width = pdf.getTextWidth(text);
-        if (width > 480) pdf.setFontSize(size * 480 / width);
+        const measured = pdf.getTextWidth(text);
+        if (measured > width - 16) pdf.setFontSize(size * (width - 16) / measured);
         pdf.setTextColor(...color);
-        pdf.text(text, 300, y, { align: "center" });
+        pdf.text(text, x + width / 2, baseline, { align: "center" });
       }
 
       const white: [number, number, number] = [255, 255, 255];
-      const muted: [number, number, number] = [181, 181, 181];
-      const cyan: [number, number, number] = [239, 255, 0];
-      centered("NCC ESCAPE CHALLENGE", 193, 19, cyan, true);
-      centered(title, 231, 29, white, true);
-      centered("PLAYER", 261, 11, muted);
-      centered(data.participantName, 294, 28, white, true);
-      centered(`Batch ${data.participantBatch}`, 320, 15, muted);
-      centered("TIME", 357, 11, muted);
-      centered(formatTime(data.completionTimeMs), 397, 40, cyan, true);
-      centered("RANK", 431, 11, muted);
-      centered(data.rank ? `#${data.rank}` : "-", 474, 40, white, true);
+      const muted: [number, number, number] = [190, 190, 190];
+      const neon: [number, number, number] = [239, 255, 0];
+      if (data.status !== "COMPLETED") {
+        field(title, [225, 420, 810, 79], 483, 70, white, true);
+      }
+      field(data.participantName.toUpperCase(), [342, 568, 570, 65], 615, 48, white, true);
+      field("Batch " + data.participantBatch, [549, 653, 156, 37], 682, 30, muted);
+      field(formatTime(data.completionTimeMs), [542, 754, 259, 84], 826, 84, neon, true);
+      field(data.rank ? "#" + data.rank : "-", [609, 923, 112, 74], 987, 76, white, true);
       const prizeStatus = data.prizeClaimed ? "Prize claimed" : data.prizeEligible ? "Prize eligible" : "Not eligible for prize";
-      centered(prizeStatus, 501, 13, muted);
-      centered("NITER COMPUTER CLUB | ORIENTATION 2026", 540, 10, muted);
+      field(prizeStatus, [578, 1032, 144, 31], 1056, 22, white);
 
       const filename = data.participantName.replace(/[<>:"/\\|?*\x00-\x1f]/g, "").trim().replace(/\s+/g, "_") || "result";
       await pdf.save(`ncc-escape-${filename}.pdf`, { returnPromise: true });
