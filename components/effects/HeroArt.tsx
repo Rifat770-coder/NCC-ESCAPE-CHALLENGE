@@ -18,6 +18,7 @@ export function HeroArt() {
             <path d="M0 6H12" stroke="#FFFFFF" strokeOpacity=".04" />
           </pattern>
         </defs>
+        <g className="hero-character-breathe">
         <path d="M40 570 52 375 130 293 183 275H357L410 295 488 380 508 570Z" fill="#101411" stroke="#636A50" />
         <path d="m80 335 71-60 54 26-30 120-102-29Z" fill="url(#armor)" stroke="#737968" strokeWidth="2" />
         <path d="m460 335-71-60-54 26 30 120 102-29Z" fill="url(#armor)" stroke="#737968" strokeWidth="2" />
@@ -34,6 +35,7 @@ export function HeroArt() {
         <path d="m63 446 54 20-9 28-52-20Zm414 0-54 20 9 28 52-20Z" fill="#4C5440" stroke="#ABB48A" />
         <path d="m80 402 42 14-4 8-42-14Zm380 0-42 14 4 8 42-14Z" fill="#EFFF00" />
         <path d="M219 267h102v36l-51 22-51-22Z" fill="#11160E" stroke="#737B60" strokeWidth="2" />
+        <g className="hero-character-helmet">
         <path d="m171 134 37-58h124l37 58-16 115-83 50-83-50Z" fill="url(#armor)" stroke="url(#edge)" strokeWidth="3" />
         <path d="m202 90 25-35h86l25 35-24 36h-88Z" fill="#454C3C" stroke="#A9AF98" strokeWidth="2" />
         <path d="M249 64h42v45h-42Z" fill="#969C82" /><path d="M259 66h22v42h-22Z" fill="#252C21" />
@@ -44,20 +46,49 @@ export function HeroArt() {
         <path d="m198 224 41 13 31 31 31-31 41-13-14 32-58 35-58-35Z" fill="#323B29" stroke="#899474" />
         <path d="m247 255 23 15 23-15M251 265l19 12 19-12" stroke="#EFFF00" strokeOpacity=".5" />
         <path d="M158 151h22v66h-22ZM360 151h22v66h-22Z" fill="#252D20" stroke="#A0AA82" />
+        <path d="M171 134h198v157H171Z" fill="url(#tech-lines)" />
+        </g>
         <path d="m123 484 29-47 313 87-9 54-115-22-18 27-47-11 3-31Z" fill="#161B14" stroke="#818A69" strokeWidth="2" />
         <path d="m171 452 181 51-9 26-181-51Z" fill="#4A5240" stroke="#A3AD8B" />
         <path d="m190 463 128 36" stroke="#EFFF00" strokeWidth="4" />
         <path d="m368 509 92 27-4 21-92-27Z" fill="#090D07" stroke="#586348" />
         <path d="m72 511 62-15 33 28-8 44-44 12-46-29ZM412 550l33-28 39 16-5 39-49 9Z" fill="url(#armor)" stroke="#8D967B" strokeWidth="2" />
+        </g>
         <path d="M40 570h468v30H40Z" fill="#050505" />
         <path d="M40 570h468" stroke="#EFFF00" strokeOpacity=".4" />
-        <path d="M171 134h198v157H171Z" fill="url(#tech-lines)" />
         <g stroke="#EFFF00" strokeOpacity=".6">
           <path d="M30 180v-45h45M510 180v-45h-45M30 480v45h45M510 480v45h-45" />
           <path d="M30 330h25M485 330h25" />
         </g>
       </svg>
       <span className="hero-art-label">NCC CORE / ESCAPE PROTOCOL</span>
+      <style jsx>{`
+        .hero-character-breathe {
+          transform-box: view-box;
+          transform-origin: 270px 570px;
+          animation: hero-character-breathe 3.8s ease-in-out infinite;
+        }
+
+        .hero-character-helmet {
+          animation: hero-character-helmet 3.8s ease-in-out infinite;
+        }
+
+        @keyframes hero-character-breathe {
+          0%, 100% { transform: translateY(0) scale(1, 1); }
+          50% { transform: translateY(-1px) scale(1.008, 1.012); }
+        }
+
+        @keyframes hero-character-helmet {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-1.5px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-character-breathe, .hero-character-helmet {
+            animation: none;
+          }
+        }
+      `}</style>
     </div>
   );
 }

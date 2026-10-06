@@ -63,11 +63,11 @@ export default function HomePage() {
       <header className="home-header relative z-20 mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-8 sm:py-6">
         <Link href="/" className="flex items-center gap-2 font-display text-base font-bold tracking-[0.3em] text-white">
           <Image
-            src="/niter-computer-club-logo.jpeg"
+            src="/NCC NEW Version Logo.png"
             alt="NITER Computer Club logo"
             width={44}
             height={48}
-            className="h-11 w-10 shrink-0 rounded-sm bg-white object-contain sm:h-12 sm:w-11"
+            className="h-11 w-10 shrink-0 rounded-sm object-contain sm:h-12 sm:w-11"
           />
           NCC · ESCAPE
         </Link>
