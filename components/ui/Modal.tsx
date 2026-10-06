@@ -2,7 +2,8 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 
 interface ModalProps {
   open: boolean;
@@ -13,8 +14,24 @@ interface ModalProps {
 }
 
 export function Modal({ open, onClose, title, children, size = "md" }: ModalProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
   const sizes = { sm: "max-w-sm", md: "max-w-lg", lg: "max-w-2xl" };
-  return (
+  if (!mounted) return null;
+
+  // Keep fixed positioning independent of animated or clipped page ancestors.
+  return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
@@ -32,6 +49,9 @@ export function Modal({ open, onClose, title, children, size = "md" }: ModalProp
             exit={{ opacity: 0 }}
           />
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={title}
             initial={{ y: 30, opacity: 0, scale: 0.95 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 20, opacity: 0, scale: 0.97 }}
@@ -52,10 +72,11 @@ export function Modal({ open, onClose, title, children, size = "md" }: ModalProp
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="min-h-0 overflow-y-auto overscroll-contain px-4 pb-4 sm:px-6 sm:pb-6">{children}</div>
+            <div className="min-h-0 flex-auto overflow-y-auto overscroll-contain px-4 pb-4 sm:px-6 sm:pb-6">{children}</div>
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

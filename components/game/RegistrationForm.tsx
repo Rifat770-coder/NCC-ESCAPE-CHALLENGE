@@ -119,7 +119,7 @@ export function RegistrationForm({ onRegistered }: RegistrationFormProps) {
           <input
             id="f-name"
             name="name"
-            placeholder="e.g. Rifat Hossain"
+            placeholder="e.g. Minhajul Islam Rifat"
             aria-invalid={!!errors.name}
             className="input-cyber"
             autoComplete="name"
@@ -133,7 +133,7 @@ export function RegistrationForm({ onRegistered }: RegistrationFormProps) {
           <input
             id="f-sid"
             name="studentId"
-            placeholder="e.g. CSE-2024-001"
+            placeholder="e.g. CS-2405023"
             aria-invalid={!!errors.studentId}
             className="input-cyber"
             autoComplete="off"
@@ -166,11 +166,13 @@ export function RegistrationForm({ onRegistered }: RegistrationFormProps) {
         </div>
         <div className="sm:col-span-2">
           <label htmlFor="f-phone" className="mb-1 block text-[10px] font-mono uppercase tracking-widest text-white/60">
-            Phone
+            Phone <span className="text-red-400">*</span>
           </label>
           <input
             id="f-phone"
             name="phone"
+            type="tel"
+            required
             placeholder="e.g. +880 1XXXXXXXXX"
             aria-invalid={!!errors.phone}
             className="input-cyber"

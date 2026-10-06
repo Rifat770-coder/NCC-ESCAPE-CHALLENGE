@@ -17,9 +17,8 @@ export const registerSchema = z.object({
   phone: z
     .string()
     .trim()
-    .max(20)
-    .optional()
-    .or(z.literal("")),
+    .min(1, "Phone number is required.")
+    .max(20),
 });
 
 export type RegisterInput = z.infer<typeof registerSchema>;
