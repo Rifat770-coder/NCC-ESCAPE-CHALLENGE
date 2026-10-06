@@ -1,0 +1,27 @@
+const fs=require('fs');
+let script=fs.readFileSync('.ui-review/responsive-browser.cjs','utf8');
+script=script.replace(/const sizes = .*;/,'const sizes = [[320,568],[768,1024],[1440,900]];');
+script=script.replace("const out = '.ui-review/responsive/'+engine;","const out = '.ui-review/level3-flow/'+engine;");
+script=script.replaceAll("'Connect Tech'","'RESTORE CONNECTIONS'");
+script=script.replace("for(const pair of plan.level3.techPairs){",`
+ const rightButtons=page.locator('button').filter({hasText:/^(CONNECT TO NETWORK|PROTECT THE SYSTEM|STORE THE DATA)$/});
+ const order=await rightButtons.allTextContents();
+ let submissions=0;
+ page.on('request',r=>{if(r.url().endsWith('/api/attempt/submit')&&r.postDataJSON()?.level===3)submissions++;});
+ await tap(page,page.getByRole('button',{name:'Wifi',exact:true}));
+ await tap(page,page.getByRole('button',{name:'STORE THE DATA',exact:true}));
+ if(!(await page.getByText('0 / 3 CONNECTED',{exact:true}).count()))throw Error('Wrong match changed progress');
+ await page.getByRole('button',{name:'CONNECT TO NETWORK',exact:true}).waitFor();
+ if(await page.getByRole('button',{name:'CONNECT TO NETWORK',exact:true}).isEnabled())throw Error('Wrong selection not cleared');
+ if(JSON.stringify(order)!==JSON.stringify(await rightButtons.allTextContents()))throw Error('Options reshuffled');
+ report.flows.push('Wrong match keeps progress and clears selection; option order stable');
+ for(const pair of plan.level3.techPairs){`);
+script=script.replace("await tap(page,page.getByRole('button',{name:pair.right,exact:true}).last());}",`await tap(page,page.getByRole('button',{name:pair.right,exact:true}).last());
+ await page.getByRole('button',{name:pair.right,exact:true}).evaluate(el=>{el.click();el.click();});
+ if(!(await page.getByRole('button',{name:pair.left,exact:true}).isDisabled()))throw Error('Matched icon not locked');
+ }`);
+script=script.replace("report.flows.push('Level 3 touch matching completion');","if(submissions!==1)throw Error('Expected exactly one Level 03 submission, got '+submissions);report.flows.push('Level 03 function matching, locked pairs, single completion request and Level 04 transition');");
+const cut=script.indexOf(" await page.goto(base+'/admin');await page.locator('input[type=password]').fill",script.indexOf("await audit(page,'leaderboard')"));
+const end=script.indexOf(" console.log('COMPLETE",cut);
+script=script.slice(0,cut)+script.slice(end);
+fs.writeFileSync('.ui-review/level3-flow.cjs',script);

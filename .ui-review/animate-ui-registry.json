@@ -1,0 +1,13 @@
+
+Something went wrong. Please check the error below for more details.
+If the problem persists, please open an issue on GitHub.
+
+Message:
+The item at https://ui.shadcn.com/r/styles/new-york/@animate-ui.json was not found. It may not exist at the registry.
+
+Suggestion:
+Check if the item name is correct and the registry URL is accessible.
+
+You can also try a previous version to see if that works:
+npx shadcn@4.20.0 view @animate-ui
+

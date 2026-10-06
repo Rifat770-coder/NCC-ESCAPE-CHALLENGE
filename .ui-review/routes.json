@@ -1,0 +1,71 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "html": true,
+    "errorPage": false
+  },
+  {
+    "path": "/leaderboard",
+    "status": 200,
+    "html": true,
+    "errorPage": false
+  },
+  {
+    "path": "/admin",
+    "status": 200,
+    "html": true,
+    "errorPage": false
+  },
+  {
+    "path": "/admin/dashboard",
+    "status": 200,
+    "html": true,
+    "errorPage": false
+  },
+  {
+    "path": "/play/ui-review-missing",
+    "status": 200,
+    "html": true,
+    "errorPage": false
+  },
+  {
+    "path": "/result/ui-review-missing",
+    "status": 200,
+    "html": true,
+    "errorPage": false
+  },
+  {
+    "path": "/api/settings",
+    "status": 500
+  },
+  {
+    "path": "/api/leaderboard",
+    "status": 200,
+    "ok": true
+  },
+  {
+    "path": "/api/admin/stats",
+    "status": 401,
+    "error": "UNAUTHORISED"
+  },
+  {
+    "path": "/api/admin/settings",
+    "status": 401,
+    "error": "UNAUTHORISED"
+  },
+  {
+    "path": "/api/register (invalid input)",
+    "status": 400
+  },
+  {
+    "path": "/api/settings (network-enabled local server)",
+    "status": 200,
+    "ok": true
+  },
+  {
+    "path": "/api/leaderboard (network-enabled local server)",
+    "status": 200,
+    "ok": true
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc:*)",
+      "Bash(npx next:*)",
+      "Bash(node probe3.cjs)",
+      "Bash(node probe4.cjs)",
+      "Bash(node probe5.cjs)",
+      "Bash(node -e \":*)",
+      "Bash(npm install:*)"
+    ]
+  }
+}

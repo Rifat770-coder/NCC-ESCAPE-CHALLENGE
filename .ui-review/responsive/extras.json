@@ -1,0 +1,65 @@
+{
+  "checks": [
+    {
+      "engine": "chromium",
+      "check": "Admin duration 60 displayed as 01:00",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "check": "Admin duration 80 displayed as 01:20",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "check": "Admin duration 120 displayed as 02:00",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "check": "Settings toggle touch target and save",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "check": "Populated admin table, search, touch claim/unclaim",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "check": "No-lives failure and ineligibility (API fixture, ended-attempt result screen)",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "check": "Admin duration 60 displayed as 01:00",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "check": "Admin duration 80 displayed as 01:20",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "check": "Admin duration 120 displayed as 02:00",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "check": "Settings toggle touch target and save",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "check": "Populated admin table, search, touch claim/unclaim",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "check": "No-lives failure and ineligibility (API fixture, ended-attempt result screen)",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,20 @@
+{
+  "connected": true,
+  "tools": [
+    "get_project_registries",
+    "list_items_in_registries",
+    "search_items_in_registries",
+    "view_items_in_registries",
+    "get_item_examples_from_registries",
+    "get_add_command_for_items",
+    "get_audit_checklist"
+  ],
+  "registries": {
+    "content": [
+      {
+        "type": "text",
+        "text": "The following registries are configured in the current project:\n\n- @shadcn\n- @animate-ui\n\nYou can view the items in a registry by running:\n`npx shadcn@latest view @name-of-registry`\n\nFor example: `npx shadcn@latest view @shadcn` or `npx shadcn@latest view @shadcn @acme` to view multiple registries."
+      }
+    ]
+  }
+}

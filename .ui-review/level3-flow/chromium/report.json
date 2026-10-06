@@ -1,0 +1,501 @@
+{
+  "viewports": [
+    {
+      "stage": "admin-login",
+      "width": 320,
+      "height": 568,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 320,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "admin-login",
+      "width": 768,
+      "height": 1024,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 768,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "admin-login",
+      "width": 1440,
+      "height": 900,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "admin",
+      "width": 320,
+      "height": 568,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 320,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "admin",
+      "width": 768,
+      "height": 1024,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 768,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "admin",
+      "width": 1440,
+      "height": 900,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "settings-modal",
+      "width": 320,
+      "height": 568,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 320,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "settings-modal",
+      "width": 768,
+      "height": 1024,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 768,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "settings-modal",
+      "width": 1440,
+      "height": 900,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "landing",
+      "width": 320,
+      "height": 568,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 320,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "landing",
+      "width": 768,
+      "height": 1024,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 768,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "landing",
+      "width": 1440,
+      "height": 900,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "rules-modal",
+      "width": 320,
+      "height": 568,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 320,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "rules-modal",
+      "width": 768,
+      "height": 1024,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 768,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "rules-modal",
+      "width": 1440,
+      "height": 900,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "registration",
+      "width": 320,
+      "height": 568,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 320,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "registration",
+      "width": 768,
+      "height": 1024,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 768,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "registration",
+      "width": 1440,
+      "height": 900,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "level1",
+      "width": 320,
+      "height": 568,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 320,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "level1",
+      "width": 768,
+      "height": 1024,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 768,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "level1",
+      "width": 1440,
+      "height": 900,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "level2",
+      "width": 320,
+      "height": 568,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 320,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "level2",
+      "width": 768,
+      "height": 1024,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 768,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "level2",
+      "width": 1440,
+      "height": 900,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "level3",
+      "width": 320,
+      "height": 568,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 320,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "level3",
+      "width": 768,
+      "height": 1024,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 768,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "level3",
+      "width": 1440,
+      "height": 900,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "level4",
+      "width": 320,
+      "height": 568,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 320,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "level4",
+      "width": 768,
+      "height": 1024,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 768,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "level4",
+      "width": 1440,
+      "height": 900,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "success",
+      "width": 320,
+      "height": 568,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 320,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "success",
+      "width": 768,
+      "height": 1024,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 768,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "success",
+      "width": 1440,
+      "height": 900,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "result",
+      "width": 320,
+      "height": 568,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 320,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "result",
+      "width": 768,
+      "height": 1024,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 768,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "result",
+      "width": 1440,
+      "height": 900,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "leaderboard",
+      "width": 320,
+      "height": 568,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 320,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "leaderboard",
+      "width": 768,
+      "height": 1024,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 768,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    },
+    {
+      "stage": "leaderboard",
+      "width": 1440,
+      "height": 900,
+      "pass": true,
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clipped": [],
+      "playerVisible": true,
+      "timerVisible": true
+    }
+  ],
+  "flows": [
+    "Admin login and settings save (isolated in-memory test server)",
+    "Logout",
+    "Modal close and reopen by touch",
+    "Registration validation",
+    "Start challenge and registration navigation",
+    "Level 1 touch completion",
+    "Level 2 touch completion and Level 2 -> Level 3 transition",
+    "Wrong match keeps progress and clears selection; option order stable",
+    "Level 03 function matching, locked pairs, single completion request and Level 04 transition",
+    "Level 4 touch color selection and mission completion",
+    "Prize eligibility and lives confirmed from real API result",
+    "Result PDF download",
+    "Leaderboard navigation and real completion data"
+  ],
+  "errors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 401 ()",
+    "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "runtimeErrors": [],
+  "httpFailures": [
+    {
+      "url": "https://fra.cloud.appwrite.io/v1/health",
+      "status": 401
+    },
+    {
+      "url": "https://fra.cloud.appwrite.io/v1/health",
+      "status": 401
+    }
+  ],
+  "requestFailures": [
+    {
+      "url": "http://127.0.0.1:3100/api/admin/logout",
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3100/admin"
+    },
+    {
+      "url": "https://fra.cloud.appwrite.io/v1/health",
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3100/admin"
+    },
+    {
+      "url": "http://127.0.0.1:3100/play/6ac4620600347bac6c5b?_rsc=1iwkq",
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3100/"
+    },
+    {
+      "url": "http://127.0.0.1:3100/result/6ac4620600347bac6c5b?_rsc=14865",
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3100/play/6ac4620600347bac6c5b"
+    },
+    {
+      "url": "http://127.0.0.1:3100/result/6ac4620600347bac6c5b?_rsc=1uu33",
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3100/play/6ac4620600347bac6c5b"
+    }
+  ]
+}

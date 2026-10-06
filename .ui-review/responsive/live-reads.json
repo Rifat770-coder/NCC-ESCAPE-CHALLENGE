@@ -1,0 +1,36 @@
+[
+  {
+    "path": "/",
+    "status": 200
+  },
+  {
+    "path": "/leaderboard",
+    "status": 200
+  },
+  {
+    "path": "/admin",
+    "status": 200
+  },
+  {
+    "path": "/admin/dashboard",
+    "status": 200
+  },
+  {
+    "path": "/play/responsive-check",
+    "status": 200
+  },
+  {
+    "path": "/result/responsive-check",
+    "status": 200
+  },
+  {
+    "path": "/api/settings",
+    "status": 200,
+    "ok": true
+  },
+  {
+    "path": "/api/leaderboard",
+    "status": 200,
+    "ok": true
+  }
+]

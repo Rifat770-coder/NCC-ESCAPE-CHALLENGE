@@ -1,0 +1,254 @@
+[
+  {
+    "engine": "chromium",
+    "reducedMotion": "no-preference",
+    "width": 320,
+    "url": "/",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "no-preference",
+    "width": 320,
+    "url": "/leaderboard",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "no-preference",
+    "width": 320,
+    "url": "/result/animation-check",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "no-preference",
+    "width": 820,
+    "url": "/",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "no-preference",
+    "width": 820,
+    "url": "/leaderboard",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "no-preference",
+    "width": 820,
+    "url": "/result/animation-check",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "no-preference",
+    "width": 1440,
+    "url": "/",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "no-preference",
+    "width": 1440,
+    "url": "/leaderboard",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "no-preference",
+    "width": 1440,
+    "url": "/result/animation-check",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "reduce",
+    "width": 320,
+    "url": "/",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "reduce",
+    "width": 320,
+    "url": "/leaderboard",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "reduce",
+    "width": 320,
+    "url": "/result/animation-check",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "reduce",
+    "width": 820,
+    "url": "/",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "reduce",
+    "width": 820,
+    "url": "/leaderboard",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "reduce",
+    "width": 820,
+    "url": "/result/animation-check",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "reduce",
+    "width": 1440,
+    "url": "/",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "reduce",
+    "width": 1440,
+    "url": "/leaderboard",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "reducedMotion": "reduce",
+    "width": 1440,
+    "url": "/result/animation-check",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "no-preference",
+    "width": 320,
+    "url": "/",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "no-preference",
+    "width": 320,
+    "url": "/leaderboard",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "no-preference",
+    "width": 320,
+    "url": "/result/animation-check",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "no-preference",
+    "width": 820,
+    "url": "/",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "no-preference",
+    "width": 820,
+    "url": "/leaderboard",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "no-preference",
+    "width": 820,
+    "url": "/result/animation-check",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "no-preference",
+    "width": 1440,
+    "url": "/",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "no-preference",
+    "width": 1440,
+    "url": "/leaderboard",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "no-preference",
+    "width": 1440,
+    "url": "/result/animation-check",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "reduce",
+    "width": 320,
+    "url": "/",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "reduce",
+    "width": 320,
+    "url": "/leaderboard",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "reduce",
+    "width": 320,
+    "url": "/result/animation-check",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "reduce",
+    "width": 820,
+    "url": "/",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "reduce",
+    "width": 820,
+    "url": "/leaderboard",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "reduce",
+    "width": 820,
+    "url": "/result/animation-check",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "reduce",
+    "width": 1440,
+    "url": "/",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "reduce",
+    "width": 1440,
+    "url": "/leaderboard",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "reducedMotion": "reduce",
+    "width": 1440,
+    "url": "/result/animation-check",
+    "pass": true
+  }
+]
