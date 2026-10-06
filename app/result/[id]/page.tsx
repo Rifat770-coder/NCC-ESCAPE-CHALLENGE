@@ -9,6 +9,8 @@ import { ArrowLeft, Download, Share2, Trophy, AlertTriangle } from "lucide-react
 import { formatTime } from "@/lib/utils";
 import { useToast } from "@/components/ui/Toast";
 import { Reveal } from "@/components/ui/Reveal";
+import resultTemplate from "@/public/ncc-result-template.png";
+import { fetchSharedJSON } from "@/lib/client/shared-read";
 
 interface Attempt {
   id: string;
@@ -28,8 +30,7 @@ export default function ResultPage() {
   const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
-    fetch(`/api/attempt?id=${params?.id}`)
-      .then((r) => r.json())
+    fetchSharedJSON<{ ok: boolean; attempt: Attempt }>(`/api/attempt?id=${params?.id}`)
       .then((d) => {
         if (d.ok) setData(d.attempt);
       })
@@ -46,7 +47,7 @@ export default function ResultPage() {
       pdf.setProperties({ title: "NCC Escape Challenge Result", author: "NITER Computer Club" });
 
       // Preserve the supplied artwork, including its logo, colours and frame.
-      const templateResponse = await fetch("/ncc-result-template.png");
+      const templateResponse = await fetch(resultTemplate.src);
       if (!templateResponse.ok) throw new Error("Could not load result template");
       const template = new Uint8Array(await templateResponse.arrayBuffer());
       pdf.addImage(template, "PNG", 0, 0, 1254, 1254);

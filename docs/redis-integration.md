@@ -1,5 +1,16 @@
 # Redis integration and deployment
 
+## Concurrency optimization update
+
+Leaderboard misses now use a five-second distributed fill lease. Other readers
+wait once for 200 ms, then use a valid entry or query fresh data. UUID ownership
+protects unlocks; expiry recovers abandoned leases. The ten-second cache TTL,
+mutation invalidation and rate-limit policies remain unchanged. Leaderboard and
+admin stats each scan attempts/participants once per uncached response.
+Current Redis fixture coverage passes 15 tests. See the
+[performance optimization report](performance-optimization.md) for browser
+caching, verification results, deployment steps and capacity limitations.
+
 ## Changed files
 
 Installed `@upstash/redis` 1.39.0 and `server-only` 0.0.1.

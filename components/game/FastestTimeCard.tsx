@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Zap } from "lucide-react";
+import { fetchSharedJSON } from "@/lib/client/shared-read";
 
 interface Stats {
   fastestTimeMs: number | null;
@@ -15,8 +16,7 @@ export function FastestTimeCard() {
     let active = true;
     async function load() {
       try {
-        const r = await fetch("/api/leaderboard", { cache: "no-store" });
-        const d = await r.json();
+        const d = await fetchSharedJSON<{ ok: boolean; stats: Stats }>("/api/leaderboard");
         if (active && d.ok) setStats(d.stats);
       } catch {}
     }

@@ -325,4 +325,6 @@ This registers a participant, starts an attempt, submits a wrong Level 1 answer 
 
 ## License
 
+Caching and concurrency changes: [performance optimization report](docs/performance-optimization.md).
+
 MIT. Built for the NITER Computer Club. Have fun at the stall! 🚀

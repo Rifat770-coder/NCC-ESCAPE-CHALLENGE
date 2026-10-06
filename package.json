@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test:redis": "node --test scripts/redis.test.cjs",
     "test:redis:http": "node scripts/redis-http-test.cjs",
+    "test:performance": "node --test scripts/performance.test.cjs",
     "setup:appwrite": "tsx scripts/setup-collections.ts"
   },
   "dependencies": {

@@ -17,6 +17,9 @@ const PROJECT_NAME = "NCC ESCAPE CHALLENGE";
 
 export function AppwriteBoot() {
   useEffect(() => {
+    // This is a development diagnostic, not a game dependency. Avoid one
+    // unnecessary cross-origin Appwrite health request per production visitor.
+    if (process.env.NODE_ENV !== "development") return;
     const endpoint = APPWRITE_CONFIG.endpoint.replace(/\/$/, "");
     const projectId = APPWRITE_CONFIG.projectId;
     let cancelled = false;

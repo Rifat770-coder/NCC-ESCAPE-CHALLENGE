@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 import Link from "next/link";
 import Image from "next/image";
+import nccLogo from "@/public/NCC NEW Version Logo.png";
+import { fetchSharedJSON } from "@/lib/client/shared-read";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Trophy, ShieldCheck, Cpu, Zap, BookOpen, Volume2, VolumeX } from "lucide-react";
 import { BackgroundFX } from "@/components/effects/BackgroundFX";
@@ -42,8 +44,7 @@ export default function HomePage() {
     // we deliberately keep the seed default — the registration flow
     // re-fetches via /api/register, so a stale landing value cannot leak
     // into the actual attempt.
-    fetch("/api/settings", { cache: "no-store" })
-      .then((r) => r.json())
+    fetchSharedJSON<{ ok: boolean; settings: PublicSettings }>("/api/settings")
       .then((d) => {
         if (d?.ok && d.settings) {
           setGameSettings({
@@ -63,7 +64,7 @@ export default function HomePage() {
       <header className="home-header relative z-20 mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-8 sm:py-6">
         <Link href="/" className="flex items-center gap-2 font-display text-base font-bold tracking-[0.3em] text-white">
           <Image
-            src="/NCC NEW Version Logo.png"
+            src={nccLogo}
             alt="NITER Computer Club logo"
             width={44}
             height={48}

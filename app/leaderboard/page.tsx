@@ -7,6 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ArrowLeft, Medal, Crown, Sparkles, Users, Zap, Activity } from "lucide-react";
 import { BackgroundFX } from "@/components/effects/BackgroundFX";
 import { formatTime } from "@/lib/utils";
+import { fetchSharedJSON } from "@/lib/client/shared-read";
 
 interface Stats {
   totalAttempts: number;
@@ -34,12 +35,13 @@ export default function LeaderboardPage() {
 
   async function load() {
     try {
-      const r = await fetch("/api/leaderboard", { cache: "no-store" });
-      const d = await r.json();
+      const d = await fetchSharedJSON<{ ok: boolean; entries: Entry[]; stats: Stats }>("/api/leaderboard");
       if (d.ok) {
         setEntries(d.entries);
         setStats(d.stats);
       }
+    } catch {
+      // Retain the last server-confirmed display during a transient failure.
     } finally {
       setLoading(false);
     }

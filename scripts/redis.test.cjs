@@ -28,6 +28,11 @@ function fixture({ realRedis = false } = {}) {
       return keys.map(get);
     }
     async ping() { if (state.fail) throw Error("SECRET_TOKEN"); return "PONG"; }
+    async set(key, value, options) {
+      if (state.fail) throw Error("SECRET_TOKEN");
+      if (options.nx && get(key) !== null) return null;
+      set(key, value, options.px / 1000); return "OK";
+    }
     async eval(script, keys, args) {
       if (state.fail) throw Error("SECRET_URL SECRET_TOKEN");
       if (script.includes("local version")) {
@@ -39,6 +44,10 @@ function fixture({ realRedis = false } = {}) {
         const expires = records.get(keys[0])?.expires ?? (state.clock + args[0] * 1000);
         records.set(keys[0], { value: count, expires });
         return [count, Math.ceil((expires - state.clock) / 1000)];
+      }
+      if (script.includes("DEL") && !script.includes("SET")) {
+        if (get(keys[0]) !== args[0]) return 0;
+        records.delete(keys[0]); return 1;
       }
       if (script.includes("DEL")) {
         set(keys[0], args[0], 86400); records.delete(keys[1]); state.invalidations++; return 1;
@@ -191,6 +200,9 @@ test("Redis integration preserves database/game behavior", async (t) => {
     await ready; await cache.invalidateLeaderboardCache();
     await cache.cachedLeaderboard(async () => ({ value: "new", cacheable: true }), true);
     finish({ value: "old", cacheable: true }); await pending;
+    // The second loader bypasses while the old fill holds the lock. Once the
+    // old writer is rejected, the next request fills only the new snapshot.
+    assert.deepEqual(await cache.cachedLeaderboard(async () => ({ value: "new", cacheable: true }), true), { value: "new", status: "MISS" });
     assert.deepEqual(await cache.cachedLeaderboard(async () => { throw Error("should hit"); }, true), { value: "new", status: "HIT" });
   });
 
@@ -246,7 +258,8 @@ test("Redis integration preserves database/game behavior", async (t) => {
     const register = h.load("app/api/register/route.ts");
     const request = (body) => new NextRequest("http://localhost/api/register", { method: "POST", body: JSON.stringify(body), headers: { "Content-Type": "application/json" } });
     const first = await leaderboard.GET(); assert.equal(first.headers.get("X-NCC-Cache"), "MISS");
-    const reads = h.state.reads; assert.equal((await leaderboard.GET()).headers.get("X-NCC-Cache"), "HIT"); assert.equal(h.state.reads, reads);
+    const reads = h.state.reads; assert.equal(reads, 2);
+    assert.equal((await leaderboard.GET()).headers.get("X-NCC-Cache"), "HIT"); assert.equal(h.state.reads, reads);
     const response = await register.POST(request({ name: "Redis Test", studentId: "REDIS-TEST-001", department: "CSE", batch: "24" }));
     assert.equal(response.status, 200); const registration = await response.json(); assert.equal(registration.ok, true);
     assert.equal((await register.POST(request({ name: "Redis Test", studentId: "REDIS-TEST-001", department: "CSE", batch: "24" }))).status, 409);
@@ -262,6 +275,7 @@ test("Redis integration preserves database/game behavior", async (t) => {
       if (index === 3) assert.equal(body.attempt.status, "COMPLETED");
     }
     assert.equal((await (await leaderboard.GET()).json()).entries.length, 1);
+    assert.doesNotMatch(JSON.stringify([...h.records.values()]), /studentId|REDIS-TEST-001|phone|department|levelSeed|levelResults/);
     await service.markPrizeClaimed(id, true); assert.equal((await leaderboard.GET()).headers.get("X-NCC-Cache"), "MISS");
     await service.setSettings({ durationSeconds: 75 }); assert.equal((await service.getSettings()).durationSeconds, 75);
     const disqualified = await service.disqualifyAttempt(id); assert.equal(disqualified.status, "DISQUALIFIED");
@@ -297,5 +311,60 @@ test("Redis integration preserves database/game behavior", async (t) => {
     assert.equal(h.state.writes, 0);
     h.state.configured = false;
     assert.equal((await leaderboard.GET()).headers.get("X-NCC-Cache"), "BYPASS");
+  });
+
+  await t.test("200 simultaneous cache misses share one fast fill", async () => {
+    const h = fixture(); const cache = h.load("lib/cache.ts"); let queries = 0;
+    const load = async () => {
+      queries++;
+      await new Promise((resolve) => setTimeout(resolve, 15));
+      return { value: { entries: ["fresh"] }, cacheable: true };
+    };
+    const results = await Promise.all(Array.from({ length: 200 }, () => cache.cachedLeaderboard(load, true)));
+    assert.equal(queries, 1);
+    assert.equal(results.filter((r) => r.status === "HIT").length, 199);
+    assert.ok(results.every((r) => r.value.entries[0] === "fresh"));
+    assert.ok(![...h.records.keys()].some((key) => key.endsWith(":fill-lock")));
+  });
+
+  await t.test("a slow fill falls back to a fresh response and an abandoned lease expires", async () => {
+    const h = fixture(); const cache = h.load("lib/cache.ts");
+    const lockKey = h.load("lib/redis.ts").redisKey("{leaderboard}:fill-lock");
+    h.records.set(lockKey, { value: "another-instance", expires: h.state.clock + 5000 });
+    let queries = 0;
+    const load = async () => ({ value: ++queries, cacheable: true });
+    assert.equal((await cache.cachedLeaderboard(load, true)).status, "BYPASS");
+    assert.equal(h.records.get(lockKey).value, "another-instance");
+    h.state.clock += 5001;
+    assert.equal((await cache.cachedLeaderboard(load, true)).status, "MISS");
+    assert.equal(queries, 2);
+  });
+
+  await t.test("a failed loader releases its fill lock and admin stats only scan twice", async () => {
+    const h = fixture(); const cache = h.load("lib/cache.ts");
+    await assert.rejects(cache.cachedLeaderboard(async () => { throw Error("db unavailable"); }, true), /db unavailable/);
+    assert.ok(![...h.records.keys()].some((key) => key.endsWith(":fill-lock")));
+    h.state.admin = true;
+    const response = await h.load("app/api/admin/stats/route.ts").GET();
+    assert.equal(response.status, 200); assert.equal(h.state.reads, 2);
+  });
+
+  await t.test("authoritative duration rebasing and expired attempts remain uncached", async () => {
+    const h = fixture(); const service = h.load("lib/game/attempt-service.ts");
+    const participant = await service.createParticipant({ name: "Timer Test", studentId: "TIMER-001", department: "CSE", batch: "24" });
+    const created = await service.createAttempt(participant);
+    const started = await service.startAttempt(created.$id);
+    await service.setSettings({ durationSeconds: 75 });
+    const rebased = await service.getAttempt(created.$id);
+    assert.equal(rebased.startedAt, started.startedAt);
+    assert.equal(rebased.durationSeconds, 75);
+    assert.equal(new Date(rebased.expiresAt).getTime() - new Date(started.startedAt).getTime(), 75_000);
+    const document = h.documents.get(h.config.collections.attempts).get(created.$id);
+    document.startedAt = new Date(Date.now() - 76_000).toISOString();
+    document.expiresAt = new Date(Date.now() - 1_000).toISOString();
+    const expired = await service.applyLevelResult(created.$id, 1, true);
+    assert.equal(expired.status, "FAILED"); assert.equal(expired.completionTimeMs, 75_000);
+    assert.equal(expired.prizeEligible, false);
+    const view = await service.getPublicAttemptView(created.$id); assert.equal(view.remainingMs, 0);
   });
 });

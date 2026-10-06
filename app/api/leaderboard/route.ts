@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getLeaderboard, getLeaderboardStats } from "@/lib/game/attempt-service";
+import { getLeaderboardSnapshot } from "@/lib/game/attempt-service";
 import { isAppwriteConfigured } from "@/lib/appwrite/server";
 import { cachedLeaderboard } from "@/lib/cache";
 
@@ -10,9 +10,7 @@ export async function GET() {
   const { value, status } = await cachedLeaderboard(async () => {
     let cacheable = true;
     const onFallback = () => { cacheable = false; };
-    const [entries, stats] = await Promise.all([
-      getLeaderboard(50, onFallback), getLeaderboardStats(onFallback),
-    ]);
+    const { entries, stats } = await getLeaderboardSnapshot(onFallback);
     return { value: { ok: true, entries, stats }, cacheable };
   }, isAppwriteConfigured());
   return NextResponse.json(value, {

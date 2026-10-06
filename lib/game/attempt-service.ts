@@ -574,7 +574,11 @@ export async function getPublicAttemptView(
 
 export async function getLeaderboard(limit = 50, onFallback?: () => void): Promise<LeaderboardEntry[]> {
   const all = await listAllAttempts(onFallback);
-  const completed = all
+  return buildLeaderboardEntries(all, limit);
+}
+
+export function buildLeaderboardEntries(attempts: readonly GameAttempt[], limit = 50): LeaderboardEntry[] {
+  const completed = attempts
     .filter((a) => a.status === "COMPLETED" && a.completionTimeMs != null)
     .sort((a, b) => {
       const dt = (a.completionTimeMs! - b.completionTimeMs!) || 0;
@@ -594,7 +598,13 @@ export async function getLeaderboard(limit = 50, onFallback?: () => void): Promi
 }
 
 export async function getLeaderboardStats(onFallback?: () => void) {
-  const attempts = await listAllAttempts(onFallback);
+  const [attempts, participants] = await Promise.all([
+    listAllAttempts(onFallback), listParticipants(onFallback),
+  ]);
+  return buildLeaderboardStats(attempts, participants);
+}
+
+export function buildLeaderboardStats(attempts: readonly GameAttempt[], participants: readonly Participant[]) {
   const total = attempts.length;
   const completed = attempts.filter((a) => a.status === "COMPLETED").length;
   const failed = attempts.filter(
@@ -609,7 +619,6 @@ export async function getLeaderboardStats(onFallback?: () => void) {
         a.completionTimeMs! < min ? a.completionTimeMs! : min,
       Number.POSITIVE_INFINITY,
     );
-  const participants = await listParticipants(onFallback);
   return {
     totalAttempts: total,
     totalParticipants: participants.length,
@@ -620,6 +629,17 @@ export async function getLeaderboardStats(onFallback?: () => void) {
     prizesRemaining: Math.max(0, eligible - claimed),
     completionRate: total === 0 ? 0 : Math.round((completed / total) * 100),
     fastestTimeMs: Number.isFinite(fastest) ? fastest : null,
+  };
+}
+
+/** One fresh database snapshot per collection; no process-global data cache. */
+export async function getLeaderboardSnapshot(onFallback?: () => void) {
+  const [attempts, participants] = await Promise.all([
+    listAllAttempts(onFallback), listParticipants(onFallback),
+  ]);
+  return {
+    entries: buildLeaderboardEntries(attempts, 50),
+    stats: buildLeaderboardStats(attempts, participants),
   };
 }
 
