@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { isAdmin } from "@/lib/security/session";
 import { getServerDatabases, isAppwriteConfigured } from "@/lib/appwrite/server";
 import { APPWRITE_CONFIG } from "@/lib/appwrite/config";
+import { invalidateLeaderboardCache } from "@/lib/cache";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -17,6 +18,7 @@ export async function POST(req: NextRequest) {
         APPWRITE_CONFIG.collections.participants,
         participantId,
       );
+      await invalidateLeaderboardCache();
       return NextResponse.json({ ok: true });
     } catch (e) {
       console.warn(e);

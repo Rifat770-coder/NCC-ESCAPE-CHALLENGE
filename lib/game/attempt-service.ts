@@ -21,6 +21,7 @@ import type {
   PublicAttemptView,
 } from "@/types";
 import { safeJSON } from "@/lib/utils";
+import { invalidateLeaderboardCache } from "@/lib/cache";
 
 const DB = APPWRITE_CONFIG.databaseId;
 const C = APPWRITE_CONFIG.collections;
@@ -78,12 +79,14 @@ export async function createParticipant(input: {
         id,
         doc as any,
       );
+      await invalidateLeaderboardCache();
       return created as unknown as Participant;
     } catch (e) {
       console.warn("Appwrite createDocument failed, falling back:", e);
     }
   }
   memory.upsertParticipant(doc);
+  await invalidateLeaderboardCache();
   return doc;
 }
 
@@ -99,7 +102,7 @@ export async function getParticipant(id: string): Promise<Participant | null> {
   return memory.getParticipant(id);
 }
 
-export async function listParticipants(): Promise<Participant[]> {
+export async function listParticipants(onFallback?: () => void): Promise<Participant[]> {
   if (isAppwriteConfigured()) {
     try {
       const r = await getServerDatabases().listDocuments(
@@ -112,6 +115,7 @@ export async function listParticipants(): Promise<Participant[]> {
       // fall through
     }
   }
+  onFallback?.();
   return memory.listParticipants().sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
 }
 
@@ -156,6 +160,7 @@ export async function setSettings(patch: Partial<GameSettings>): Promise<GameSet
       next as any,
     );
     const saved = r as unknown as GameSettings;
+    await invalidateLeaderboardCache();
     // Rebase any in-flight ACTIVE attempts so their timer picks up the
     // newly-configured duration. Without this, players mid-game would
     // keep counting down against their old snapshot — they would see
@@ -170,6 +175,7 @@ export async function setSettings(patch: Partial<GameSettings>): Promise<GameSet
     return saved;
   }
   memory.setSettings({ ...next, $id: "settings" });
+  await invalidateLeaderboardCache();
   if (
     typeof patch.durationSeconds === "number" &&
     patch.durationSeconds !== current.durationSeconds
@@ -308,12 +314,14 @@ export async function createAttempt(
         doc.$id,
         doc as any,
       );
+      await invalidateLeaderboardCache();
       return r as unknown as GameAttempt;
     } catch (e) {
       // fall through
     }
   }
   memory.upsertAttempt(doc);
+  await invalidateLeaderboardCache();
   return doc;
 }
 
@@ -338,16 +346,18 @@ async function persistAttempt(attempt: GameAttempt): Promise<GameAttempt> {
         attempt.$id,
         attempt as any,
       );
+      await invalidateLeaderboardCache();
       return r as unknown as GameAttempt;
     } catch (e) {
       // fall through
     }
   }
   memory.upsertAttempt(attempt);
+  await invalidateLeaderboardCache();
   return attempt;
 }
 
-export async function listAllAttempts(): Promise<GameAttempt[]> {
+export async function listAllAttempts(onFallback?: () => void): Promise<GameAttempt[]> {
   if (isAppwriteConfigured()) {
     try {
       const r = await getServerDatabases().listDocuments(
@@ -360,6 +370,7 @@ export async function listAllAttempts(): Promise<GameAttempt[]> {
       // fall through
     }
   }
+  onFallback?.();
   return memory
     .listAttempts()
     .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
@@ -369,12 +380,14 @@ export async function deleteAttempt(id: string): Promise<void> {
   if (isAppwriteConfigured()) {
     try {
       await getServerDatabases().deleteDocument(DB, C.attempts, id);
+      await invalidateLeaderboardCache();
       return;
     } catch (e) {
       // fall through
     }
   }
   memory.upsertAttempt({ $id: id, _deleted: true });
+  await invalidateLeaderboardCache();
 }
 
 export async function disqualifyAttempt(id: string): Promise<GameAttempt | null> {
@@ -559,8 +572,8 @@ export async function getPublicAttemptView(
 
 /* ---------------- Leaderboard ---------------- */
 
-export async function getLeaderboard(limit = 50): Promise<LeaderboardEntry[]> {
-  const all = await listAllAttempts();
+export async function getLeaderboard(limit = 50, onFallback?: () => void): Promise<LeaderboardEntry[]> {
+  const all = await listAllAttempts(onFallback);
   const completed = all
     .filter((a) => a.status === "COMPLETED" && a.completionTimeMs != null)
     .sort((a, b) => {
@@ -580,8 +593,8 @@ export async function getLeaderboard(limit = 50): Promise<LeaderboardEntry[]> {
   }));
 }
 
-export async function getLeaderboardStats() {
-  const attempts = await listAllAttempts();
+export async function getLeaderboardStats(onFallback?: () => void) {
+  const attempts = await listAllAttempts(onFallback);
   const total = attempts.length;
   const completed = attempts.filter((a) => a.status === "COMPLETED").length;
   const failed = attempts.filter(
@@ -596,7 +609,7 @@ export async function getLeaderboardStats() {
         a.completionTimeMs! < min ? a.completionTimeMs! : min,
       Number.POSITIVE_INFINITY,
     );
-  const participants = await listParticipants();
+  const participants = await listParticipants(onFallback);
   return {
     totalAttempts: total,
     totalParticipants: participants.length,

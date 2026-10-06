@@ -7,12 +7,15 @@ import {
   getSettings,
 } from "@/lib/game/attempt-service";
 import { getAttemptPlan } from "@/lib/game/engine";
+import { rateLimitRequest } from "@/lib/security/rate-limit";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
   try {
+    const limited = await rateLimitRequest(req, "registration");
+    if (limited) return limited;
     const body = await req.json();
     const parsed = registerSchema.safeParse(body);
     if (!parsed.success) {

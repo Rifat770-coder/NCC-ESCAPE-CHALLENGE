@@ -8,9 +8,12 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "test:redis": "node --test scripts/redis.test.cjs",
+    "test:redis:http": "node scripts/redis-http-test.cjs",
     "setup:appwrite": "tsx scripts/setup-collections.ts"
   },
   "dependencies": {
+    "@upstash/redis": "^1.39.0",
     "appwrite": "16.0.2",
     "clsx": "2.1.1",
     "framer-motion": "11.11.9",
@@ -22,6 +25,7 @@
     "node-appwrite": "^29.0.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "server-only": "^0.0.1",
     "tailwind-merge": "2.5.4",
     "zod": "3.23.8"
   },

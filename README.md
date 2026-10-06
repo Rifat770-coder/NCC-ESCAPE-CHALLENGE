@@ -234,6 +234,9 @@ This is what we recommend because all writes go through the Next.js Route Handle
 
 ## Deploy to Vercel
 
+For optional Upstash Redis caching, rate limiting, environment variables and
+verification steps, see [Redis integration](docs/redis-integration.md).
+
 1. Push this repo to GitHub.
 2. Import the project in [vercel.com/new](https://vercel.com/new).
 3. Set the environment variables (Project Settings → Environment Variables):
