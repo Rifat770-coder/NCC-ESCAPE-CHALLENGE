@@ -1,0 +1,14 @@
+{
+  "target": "https://ncc-escape-challenge.vercel.app",
+  "ledgerPath": "load-tests/results/production-duplicates-records.jsonl",
+  "planned": 1,
+  "deletedAttempts": [
+    "6ac53641001bd9d03431"
+  ],
+  "deletedParticipants": [
+    "6ac53641000c748639d2"
+  ],
+  "skipped": [],
+  "unresolved": [],
+  "finishedAt": "2026-10-06T17:57:10.035Z"
+}

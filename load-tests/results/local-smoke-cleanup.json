@@ -1,0 +1,16 @@
+{
+  "target": "http://127.0.0.1:3127",
+  "ledgerPath": "load-tests/results/local-smoke-records.jsonl",
+  "planned": 2,
+  "deletedAttempts": [
+    "6ac531980009e6fbb987",
+    "6ac531980020ed8ce656"
+  ],
+  "deletedParticipants": [
+    "6ac53198000999429029",
+    "6ac531980020c0091408"
+  ],
+  "skipped": [],
+  "unresolved": [],
+  "finishedAt": "2026-10-06T17:37:37.763Z"
+}

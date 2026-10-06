@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
@@ -28,6 +28,7 @@ export default function ResultPage() {
   const { push } = useToast();
   const [data, setData] = useState<Attempt | null>(null);
   const [downloading, setDownloading] = useState(false);
+  const downloadPending = useRef(false);
 
   useEffect(() => {
     fetchSharedJSON<{ ok: boolean; attempt: Attempt }>(`/api/attempt?id=${params?.id}`)
@@ -38,18 +39,22 @@ export default function ResultPage() {
   }, [params?.id, push]);
 
   async function download() {
-    if (!data || downloading) return;
+    if (!data || downloadPending.current) return;
+    downloadPending.current = true;
     setDownloading(true);
     try {
-      const { jsPDF } = await import("jspdf");
+      const [{ jsPDF }, template] = await Promise.all([
+        import("jspdf"),
+        fetch(resultTemplate.src).then(async (response) => {
+          if (!response.ok) throw new Error("Could not load result template");
+          return new Uint8Array(await response.arrayBuffer());
+        }),
+      ]);
       const pdf = new jsPDF({ orientation: "portrait", unit: "pt", format: [1254, 1254] });
       const title = data.status === "COMPLETED" ? "MISSION COMPLETED" : data.status === "FAILED" ? "MISSION FAILED" : "ATTEMPT RECORD";
       pdf.setProperties({ title: "NCC Escape Challenge Result", author: "NITER Computer Club" });
 
       // Preserve the supplied artwork, including its logo, colours and frame.
-      const templateResponse = await fetch(resultTemplate.src);
-      if (!templateResponse.ok) throw new Error("Could not load result template");
-      const template = new Uint8Array(await templateResponse.arrayBuffer());
       pdf.addImage(template, "PNG", 0, 0, 1254, 1254);
 
       function field(text: string, box: [number, number, number, number], baseline: number,
@@ -85,6 +90,7 @@ export default function ResultPage() {
     } catch {
       push("Could not download the PDF.", "error");
     } finally {
+      downloadPending.current = false;
       setDownloading(false);
     }
   }

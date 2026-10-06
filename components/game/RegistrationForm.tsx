@@ -1,7 +1,7 @@
 "use client";
 import { Reveal } from "@/components/ui/Reveal";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { registerSchema, type RegisterInput } from "@/lib/validation/schemas";
 import { ArrowRight, Loader2, UserPlus } from "lucide-react";
@@ -28,6 +28,7 @@ const BATCHES = ["12", "13", "14", "15", "16"];
 export function RegistrationForm({ onRegistered }: RegistrationFormProps) {
   const { push } = useToast();
   const [submitting, setSubmitting] = useState(false);
+  const submissionPending = useRef(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   function validateClient(values: RegisterInput): Record<string, string> {
@@ -41,6 +42,7 @@ export function RegistrationForm({ onRegistered }: RegistrationFormProps) {
   }
 
   async function onSubmit(formEl: HTMLFormElement) {
+    if (submissionPending.current) return;
     setErrors({});
     const fd = new FormData(formEl);
     const values = {
@@ -55,6 +57,7 @@ export function RegistrationForm({ onRegistered }: RegistrationFormProps) {
       setErrors(localErrs);
       return;
     }
+    submissionPending.current = true;
     setSubmitting(true);
     try {
       const res = await fetch("/api/register", {
@@ -80,6 +83,7 @@ export function RegistrationForm({ onRegistered }: RegistrationFormProps) {
     } catch (e) {
       push("Network error. Please try again.", "error");
     } finally {
+      submissionPending.current = false;
       setSubmitting(false);
     }
   }

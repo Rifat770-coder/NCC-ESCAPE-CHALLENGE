@@ -11,8 +11,7 @@
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import * as Lucide from "lucide-react";
-import { Check, Loader2, X, Zap } from "lucide-react";
+import { Check, Loader2, X, Zap, Wifi, Shield, Save, type LucideIcon } from "lucide-react";
 import { useAudio } from "@/hooks/useAudio";
 import { useToast } from "@/components/ui/Toast";
 
@@ -30,6 +29,10 @@ interface Level3Props {
 }
 
 type Side = "left" | "right";
+
+// These are the complete icon names emitted by the current server plan.
+// Explicit imports let the bundler omit the rest of the icon library.
+const TECH_ICONS: Record<string, LucideIcon> = { Wifi, Shield, Save };
 
 function shuffleStable<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -174,7 +177,7 @@ export function Level3TechMatch({ puzzle, submitting, onSubmit }: Level3Props) {
             {/* Left (icons) */}
             <div className="space-y-2">
               {leftOrder.map((id) => {
-                const Icon = (Lucide as any)[id] || Zap;
+                const Icon = TECH_ICONS[id] || Zap;
                 const matched = isMatched(id, "left");
                 const picked = isPicked(id, "left");
                 return (

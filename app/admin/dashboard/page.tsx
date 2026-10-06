@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -90,8 +90,11 @@ export default function AdminDashboard() {
   const [filter, setFilter] = useState<FilterType>("all");
   const [loading, setLoading] = useState(true);
   const [showSettings, setShowSettings] = useState(false);
+  const activeStatsReads = useRef(0);
+  const pendingActions = useRef(new Set<string>());
 
   async function load() {
+    activeStatsReads.current++;
     try {
       const r = await fetch("/api/admin/stats", { cache: "no-store" });
       const d = await r.json();
@@ -106,6 +109,7 @@ export default function AdminDashboard() {
     } catch {
       push("Network error.", "error");
     } finally {
+      activeStatsReads.current--;
       setLoading(false);
     }
   }
@@ -117,7 +121,9 @@ export default function AdminDashboard() {
   useEffect(() => {
     load();
     loadSettings();
-    const id = setInterval(load, 7000);
+    const id = setInterval(() => {
+      if (activeStatsReads.current === 0) void load();
+    }, 7000);
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -128,18 +134,26 @@ export default function AdminDashboard() {
   }
 
   async function action(attemptId: string, action: string) {
-    const r = await fetch("/api/admin/action", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ attemptId, action }),
-    });
-    const d = await r.json();
-    if (!r.ok || !d.ok) {
-      push(d.error || "Action failed.", "error");
-      return;
+    if (pendingActions.current.has(attemptId)) return;
+    pendingActions.current.add(attemptId);
+    try {
+      const r = await fetch("/api/admin/action", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ attemptId, action }),
+      });
+      const d = await r.json();
+      if (!r.ok || !d.ok) {
+        push(d.error || "Action failed.", "error");
+        return;
+      }
+      push("Action applied.", "success");
+      load();
+    } catch {
+      push("Network error.", "error");
+    } finally {
+      pendingActions.current.delete(attemptId);
     }
-    push("Action applied.", "success");
-    load();
   }
 
   const filtered = useMemo(() => {
@@ -401,6 +415,7 @@ function ActionBtn({ icon: Icon, label, onClick, accent }: { icon: any; label: s
 function SettingsForm({ initial, onSaved, onClose }: { initial: SettingsType; onSaved: (s: SettingsType) => void; onClose: () => void }) {
   const [draft, setDraft] = useState<SettingsType>(initial);
   const [saving, setSaving] = useState(false);
+  const savePending = useRef(false);
   const [error, setError] = useState<string | null>(null);
 
   // Sync the form to whatever the latest server values are when reopened.
@@ -426,6 +441,8 @@ function SettingsForm({ initial, onSaved, onClose }: { initial: SettingsType; on
   }
 
   async function save() {
+    if (savePending.current) return;
+    savePending.current = true;
     setSaving(true);
     setError(null);
     try {
@@ -459,6 +476,7 @@ function SettingsForm({ initial, onSaved, onClose }: { initial: SettingsType; on
     } catch (e: any) {
       setError(e?.message || "Network error while saving.");
     } finally {
+      savePending.current = false;
       setSaving(false);
     }
   }

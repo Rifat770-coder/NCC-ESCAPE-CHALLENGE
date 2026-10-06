@@ -1,0 +1,12 @@
+{
+  "label": "production-edge-probe",
+  "script": "probe",
+  "run": "5c25e4f4",
+  "target": "https://ncc-escape-challenge.vercel.app",
+  "mode": "authorized-production",
+  "startedAt": "2026-10-06T17:54:22.197Z",
+  "generator": {
+    "node": "v25.8.2",
+    "platform": "win32"
+  }
+}

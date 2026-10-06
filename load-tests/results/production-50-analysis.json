@@ -1,0 +1,380 @@
+{
+  "label": "production-50",
+  "script": "load",
+  "run": "1a36bd39",
+  "target": "https://ncc-escape-challenge.vercel.app",
+  "mode": "authorized-production",
+  "vus": "50",
+  "startedAt": "2026-10-06T17:43:13.369Z",
+  "generator": {
+    "node": "v25.8.2",
+    "platform": "win32"
+  },
+  "result": "WARNING",
+  "thresholds": [
+    {
+      "metric": "journey_failed",
+      "expression": "rate<0.01",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:start}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:level1}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:static_asset}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:homepage}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "http_req_failed",
+      "expression": "rate<0.01",
+      "passed": true
+    },
+    {
+      "metric": "api_latency",
+      "expression": "p(95)<1000",
+      "passed": false
+    },
+    {
+      "metric": "api_latency",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:leaderboard_page}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:settings}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:leaderboard}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:register}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "semantic_failed",
+      "expression": "rate<0.01",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:level4}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:result}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:result_page}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:play_page}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:level3}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:level2}",
+      "expression": "p(99)<2000",
+      "passed": true
+    }
+  ],
+  "durationSeconds": 80.063005,
+  "peakVUs": 50,
+  "requests": 947,
+  "requestsPerSecond": 11.828184565393217,
+  "peakRequestsPerSecond": 36,
+  "latency": {
+    "count": 947,
+    "avg": 536.9129043294615,
+    "min": 39.6961,
+    "median": 391.9777,
+    "p90": 1024.05764,
+    "p95": 1178.7137299999997,
+    "p99": 1543.1129539999977,
+    "max": 2409.7665
+  },
+  "httpFailureRate": 0,
+  "semanticFailureRate": 0,
+  "journeyFailureRate": 0,
+  "semanticFailures": 0,
+  "successfulRequests": 947,
+  "statuses": {
+    "200": 947
+  },
+  "timeouts": 0,
+  "networkErrors": 0,
+  "missingRanks": 0,
+  "redisCache": {
+    "HIT": 254,
+    "MISS": 61,
+    "BYPASS": 32
+  },
+  "journeysStarted": 50,
+  "journeysCompleted": 50,
+  "dataReceived": 7634655,
+  "dataSent": 199765,
+  "endpoints": {
+    "homepage": {
+      "count": 50,
+      "avg": 66.03085800000001,
+      "min": 43.6047,
+      "median": 56.2491,
+      "p90": 81.45152,
+      "p95": 97.99126999999997,
+      "p99": 232.7821669999995,
+      "max": 355.3859,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 50
+      }
+    },
+    "settings": {
+      "count": 50,
+      "avg": 395.79122600000005,
+      "min": 343.2591,
+      "median": 375.1427,
+      "p90": 430.24898,
+      "p95": 450.362355,
+      "p99": 795.7928699999987,
+      "max": 1122.9742,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 50
+      }
+    },
+    "leaderboard": {
+      "count": 347,
+      "avg": 345.4483524495677,
+      "min": 234.5407,
+      "median": 269.0786,
+      "p90": 507.01432000000074,
+      "p95": 631.4543299999999,
+      "p99": 864.9724360000002,
+      "max": 1491.6015,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 347
+      }
+    },
+    "register": {
+      "count": 50,
+      "avg": 976.4405839999998,
+      "min": 842.8325,
+      "median": 916.32335,
+      "p90": 1229.5756,
+      "p95": 1295.683365,
+      "p99": 1374.963162,
+      "max": 1401.6761,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 50
+      }
+    },
+    "play_page": {
+      "count": 50,
+      "avg": 293.0316260000001,
+      "min": 250.5706,
+      "median": 269.86325,
+      "p90": 286.45743,
+      "p95": 303.80972499999996,
+      "p99": 847.297665999998,
+      "max": 1361.5559,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 50
+      }
+    },
+    "start": {
+      "count": 50,
+      "avg": 984.5037400000001,
+      "min": 834.6985,
+      "median": 923.96345,
+      "p90": 1145.9213499999998,
+      "p95": 1191.3669099999997,
+      "p99": 1843.4973629999977,
+      "max": 2409.7665,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 50
+      }
+    },
+    "level1": {
+      "count": 50,
+      "avg": 972.5217899999999,
+      "min": 841.7679,
+      "median": 893.9522,
+      "p90": 1143.9025700000002,
+      "p95": 1613.3949999999986,
+      "p99": 1923.6408029999998,
+      "max": 1975.4805,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 50
+      }
+    },
+    "level2": {
+      "count": 50,
+      "avg": 993.6424620000001,
+      "min": 838.4132,
+      "median": 900.7272,
+      "p90": 1237.8431800000003,
+      "p95": 1548.9384049999999,
+      "p99": 1691.0897939999995,
+      "max": 1785.9731,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 50
+      }
+    },
+    "level3": {
+      "count": 50,
+      "avg": 991.8672880000001,
+      "min": 823.2511,
+      "median": 917.37825,
+      "p90": 1225.41295,
+      "p95": 1295.7713849999998,
+      "p99": 1786.9833899999996,
+      "max": 1904.6123,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 50
+      }
+    },
+    "level4": {
+      "count": 50,
+      "avg": 1117.488042,
+      "min": 958.2344,
+      "median": 1074.83495,
+      "p90": 1291.7918,
+      "p95": 1313.791155,
+      "p99": 1449.7377829999996,
+      "max": 1571.0879,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 50
+      }
+    },
+    "result_page": {
+      "count": 50,
+      "avg": 272.15374199999997,
+      "min": 252.2394,
+      "median": 268.44325,
+      "p90": 286.69159,
+      "p95": 314.06404999999995,
+      "p99": 324.88644899999997,
+      "max": 329.7766,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 50
+      }
+    },
+    "result": {
+      "count": 50,
+      "avg": 659.971326,
+      "min": 594.6442,
+      "median": 639.509,
+      "p90": 728.1595900000001,
+      "p95": 798.5589199999997,
+      "p99": 935.0257079999999,
+      "max": 954.7731,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 50
+      }
+    },
+    "leaderboard_page": {
+      "count": 50,
+      "avg": 48.276158,
+      "min": 39.6961,
+      "median": 46.822050000000004,
+      "p90": 53.69132,
+      "p95": 60.03538499999999,
+      "p99": 63.10929799999999,
+      "max": 64.6086,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 50
+      }
+    }
+  },
+  "latencyByMinute": [
+    {
+      "utcMinute": "2026-10-06T17:43:00.000Z",
+      "count": 542,
+      "avg": 643.0422083025832,
+      "min": 40.3344,
+      "median": 741.31305,
+      "p90": 1056.8042700000003,
+      "p95": 1212.244075,
+      "p99": 1736.190982000004,
+      "max": 2409.7665
+    },
+    {
+      "utcMinute": "2026-10-06T17:44:00.000Z",
+      "count": 405,
+      "avg": 394.8830703703703,
+      "min": 39.6961,
+      "median": 268.6862,
+      "p90": 811.1820000000013,
+      "p95": 1076.60936,
+      "p99": 1292.2952999999993,
+      "max": 1571.0879
+    }
+  ]
+}

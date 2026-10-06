@@ -1,0 +1,12 @@
+{
+  "label": "local-smoke",
+  "script": "smoke",
+  "run": "534da867",
+  "target": "http://127.0.0.1:3127",
+  "mode": "local-fixture",
+  "startedAt": "2026-10-06T17:36:22.653Z",
+  "generator": {
+    "node": "v25.8.2",
+    "platform": "win32"
+  }
+}

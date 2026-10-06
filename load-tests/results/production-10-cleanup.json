@@ -1,0 +1,32 @@
+{
+  "target": "https://ncc-escape-challenge.vercel.app",
+  "ledgerPath": "load-tests/results/production-10-records.jsonl",
+  "planned": 10,
+  "deletedAttempts": [
+    "6ac5326500341c13bcdd",
+    "6ac53266001318cc2b61",
+    "6ac53266002b6944f3b9",
+    "6ac53267000dc41159d2",
+    "6ac53269001ae4a8b520",
+    "6ac5326900065fc900a5",
+    "6ac5326a0025d0043178",
+    "6ac5326c001b46f669a0",
+    "6ac5326c002a617c0049",
+    "6ac5326d002a2415c156"
+  ],
+  "deletedParticipants": [
+    "6ac5326500249cdb87a0",
+    "6ac532660002b05b4391",
+    "6ac53266001aee8351d5",
+    "6ac53266003d9bdd2edc",
+    "6ac53269000aa78e6bec",
+    "6ac5326800356f7bc47e",
+    "6ac5326a0016ba2a3655",
+    "6ac5326c000a820a3b4f",
+    "6ac5326c00191781e683",
+    "6ac5326d001a0bdae98d"
+  ],
+  "skipped": [],
+  "unresolved": [],
+  "finishedAt": "2026-10-06T17:42:42.894Z"
+}

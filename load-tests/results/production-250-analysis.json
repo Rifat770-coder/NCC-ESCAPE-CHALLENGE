@@ -1,0 +1,238 @@
+{
+  "label": "production-250",
+  "script": "load",
+  "run": "4e7943cd",
+  "target": "https://ncc-escape-challenge.vercel.app",
+  "mode": "authorized-production",
+  "vus": "250",
+  "startedAt": "2026-10-06T17:52:04.784Z",
+  "generator": {
+    "node": "v25.8.2",
+    "platform": "win32"
+  },
+  "result": "FAIL",
+  "thresholds": [
+    {
+      "metric": "operation_latency{operation:leaderboard}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:result}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:register}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:homepage}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "journey_failed",
+      "expression": "rate<0.01",
+      "passed": false
+    },
+    {
+      "metric": "operation_latency{operation:play_page}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:level1}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:level4}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:start}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:level3}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:settings}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:static_asset}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "semantic_failed",
+      "expression": "rate<0.01",
+      "passed": false
+    },
+    {
+      "metric": "http_req_failed",
+      "expression": "rate<0.01",
+      "passed": false
+    },
+    {
+      "metric": "api_latency",
+      "expression": "p(95)<1000",
+      "passed": true
+    },
+    {
+      "metric": "api_latency",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:result_page}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:leaderboard_page}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:level2}",
+      "expression": "p(99)<2000",
+      "passed": true
+    }
+  ],
+  "durationSeconds": 21.9593622,
+  "peakVUs": 250,
+  "requests": 1270,
+  "requestsPerSecond": 57.83410230375452,
+  "peakRequestsPerSecond": 110,
+  "latency": {
+    "count": 1270,
+    "avg": 61.29860220472438,
+    "min": 25.8181,
+    "median": 40.99705,
+    "p90": 52.65355000000001,
+    "p95": 121.9385099999998,
+    "p99": 606.0820519999993,
+    "max": 1003.8694
+  },
+  "apiLatency": {
+    "min": 36.4148,
+    "med": 40.797200000000004,
+    "max": 1003.8694,
+    "p(90)": 50.28179,
+    "p(95)": 249.46748499999998,
+    "p(99)": 654.5112809999998,
+    "avg": 65.25695960784313
+  },
+  "httpFailureRate": 0.9228346456692913,
+  "semanticFailureRate": 0.9228346456692913,
+  "journeyFailureRate": 1,
+  "semanticFailures": 1172,
+  "successfulRequests": 98,
+  "statuses": {
+    "200": 98,
+    "403": 1172
+  },
+  "timeouts": 0,
+  "networkErrors": 0,
+  "missingRanks": 0,
+  "redisCache": {
+    "MISS": 1,
+    "HIT": 25,
+    "UNKNOWN": 931
+  },
+  "journeysStarted": 250,
+  "journeysCompleted": 0,
+  "dataReceived": 43459146,
+  "dataSent": 683315,
+  "endpoints": {
+    "homepage": {
+      "count": 250,
+      "avg": 45.148503999999996,
+      "min": 25.8181,
+      "median": 42.03735,
+      "p90": 58.29612,
+      "p95": 64.71450999999999,
+      "p99": 86.69272499999992,
+      "max": 123.9987,
+      "semanticFailures": 213,
+      "semanticFailureRate": 0.852,
+      "httpFailures": 213,
+      "statuses": {
+        "200": 37,
+        "403": 213
+      }
+    },
+    "settings": {
+      "count": 37,
+      "avg": 513.0641054054054,
+      "min": 40.1861,
+      "median": 426.785,
+      "p90": 730.88424,
+      "p95": 883.2582399999998,
+      "p99": 975.723232,
+      "max": 1003.8694,
+      "semanticFailures": 2,
+      "semanticFailureRate": 0.05405405405405406,
+      "httpFailures": 2,
+      "statuses": {
+        "200": 35,
+        "403": 2
+      }
+    },
+    "leaderboard": {
+      "count": 957,
+      "avg": 48.568868443051166,
+      "min": 36.4148,
+      "median": 40.6348,
+      "p90": 47.239799999999995,
+      "p95": 53.616459999999975,
+      "p99": 262.0013639999997,
+      "max": 476.5336,
+      "semanticFailures": 931,
+      "semanticFailureRate": 0.9728317659352143,
+      "httpFailures": 931,
+      "statuses": {
+        "200": 26,
+        "403": 931
+      }
+    },
+    "register": {
+      "count": 26,
+      "avg": 42.24306923076924,
+      "min": 36.695,
+      "median": 42.113749999999996,
+      "p90": 48.3605,
+      "p95": 51.029325,
+      "p99": 52.295975,
+      "max": 52.5418,
+      "semanticFailures": 26,
+      "semanticFailureRate": 1,
+      "httpFailures": 26,
+      "statuses": {
+        "403": 26
+      }
+    }
+  },
+  "latencyByMinute": [
+    {
+      "utcMinute": "2026-10-06T17:52:00.000Z",
+      "count": 1270,
+      "avg": 61.29860220472438,
+      "min": 25.8181,
+      "median": 40.99705,
+      "p90": 52.65355000000001,
+      "p95": 121.9385099999998,
+      "p99": 606.0820519999993,
+      "max": 1003.8694
+    }
+  ]
+}

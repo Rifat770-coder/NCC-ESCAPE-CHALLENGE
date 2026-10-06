@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { BackgroundFX } from "@/components/effects/BackgroundFX";
 import { ShieldCheck, Loader2, ArrowRight, Lock } from "lucide-react";
@@ -12,9 +12,12 @@ export default function AdminLogin() {
   const { push } = useToast();
   const [pwd, setPwd] = useState("");
   const [loading, setLoading] = useState(false);
+  const loginPending = useRef(false);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    if (loginPending.current) return;
+    loginPending.current = true;
     setLoading(true);
     try {
       const res = await fetch("/api/admin/login", {
@@ -32,6 +35,7 @@ export default function AdminLogin() {
     } catch {
       push("Network error.", "error");
     } finally {
+      loginPending.current = false;
       setLoading(false);
     }
   }

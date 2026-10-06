@@ -1,0 +1,13 @@
+{
+  "label": "production-50",
+  "script": "load",
+  "run": "1a36bd39",
+  "target": "https://ncc-escape-challenge.vercel.app",
+  "mode": "authorized-production",
+  "vus": "50",
+  "startedAt": "2026-10-06T17:43:13.369Z",
+  "generator": {
+    "node": "v25.8.2",
+    "platform": "win32"
+  }
+}

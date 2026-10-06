@@ -1,0 +1,113 @@
+{
+  "target": "https://ncc-escape-challenge.vercel.app",
+  "run": "8725ef32",
+  "outcomes": [
+    {
+      "operation": "register",
+      "status": 200,
+      "durationMs": 1521.2355,
+      "ok": true,
+      "attemptStatus": "READY"
+    },
+    {
+      "operation": "concurrent_start_1",
+      "status": 200,
+      "durationMs": 881.1403,
+      "ok": true,
+      "attemptStatus": "ACTIVE",
+      "completionTimeMs": null,
+      "completedAt": null,
+      "startedAt": "2026-10-06T17:56:18.490+00:00",
+      "rank": null
+    },
+    {
+      "operation": "concurrent_start_2",
+      "status": 200,
+      "durationMs": 976.6211000000001,
+      "ok": true,
+      "attemptStatus": "ACTIVE",
+      "completionTimeMs": null,
+      "completedAt": null,
+      "startedAt": "2026-10-06T17:56:18.490+00:00",
+      "rank": null
+    },
+    {
+      "operation": "level1",
+      "status": 200,
+      "durationMs": 951.8292999999999,
+      "ok": true,
+      "passed": true,
+      "attemptStatus": "ACTIVE",
+      "completionTimeMs": null,
+      "completedAt": null,
+      "startedAt": "2026-10-06T17:56:18.490+00:00",
+      "rank": null
+    },
+    {
+      "operation": "level2",
+      "status": 200,
+      "durationMs": 866.0272000000004,
+      "ok": true,
+      "passed": true,
+      "attemptStatus": "ACTIVE",
+      "completionTimeMs": null,
+      "completedAt": null,
+      "startedAt": "2026-10-06T17:56:18.490+00:00",
+      "rank": null
+    },
+    {
+      "operation": "level3",
+      "status": 200,
+      "durationMs": 863.0307999999986,
+      "ok": true,
+      "passed": true,
+      "attemptStatus": "ACTIVE",
+      "completionTimeMs": null,
+      "completedAt": null,
+      "startedAt": "2026-10-06T17:56:18.490+00:00",
+      "rank": null
+    },
+    {
+      "operation": "concurrent_final_1",
+      "status": 200,
+      "durationMs": 992.0244999999995,
+      "ok": true,
+      "passed": true,
+      "attemptStatus": "COMPLETED",
+      "completionTimeMs": 9455,
+      "completedAt": "2026-10-06T17:56:28.060+00:00",
+      "startedAt": "2026-10-06T17:56:18.490+00:00",
+      "rank": 1
+    },
+    {
+      "operation": "concurrent_final_2",
+      "status": 200,
+      "durationMs": 1398.0211,
+      "ok": true,
+      "passed": true,
+      "attemptStatus": "COMPLETED",
+      "completionTimeMs": 9533,
+      "completedAt": "2026-10-06T17:56:28.415+00:00",
+      "startedAt": "2026-10-06T17:56:18.490+00:00",
+      "rank": 1
+    },
+    {
+      "operation": "sequential_final_replay",
+      "status": 409,
+      "durationMs": 377.64789999999994,
+      "error": "ATTEMPT_ENDED"
+    },
+    {
+      "operation": "result",
+      "status": 200,
+      "durationMs": 607.3441000000003,
+      "ok": true,
+      "attemptStatus": "COMPLETED",
+      "completionTimeMs": 9533,
+      "completedAt": "2026-10-06T17:56:28.415+00:00",
+      "startedAt": "2026-10-06T17:56:18.490+00:00",
+      "rank": 1
+    }
+  ],
+  "simultaneousFinalsAccepted": 2
+}

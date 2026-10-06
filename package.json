@@ -11,6 +11,8 @@
     "test:redis": "node --test scripts/redis.test.cjs",
     "test:redis:http": "node scripts/redis-http-test.cjs",
     "test:performance": "node --test scripts/performance.test.cjs",
+    "test:network": "node --test scripts/submission-network.test.cjs",
+    "audit:network": "node scripts/slow-network-audit.cjs",
     "setup:appwrite": "tsx scripts/setup-collections.ts"
   },
   "dependencies": {

@@ -1,0 +1,16 @@
+{
+  "target": "https://ncc-escape-challenge.vercel.app",
+  "ledgerPath": "load-tests/results/production-smoke-records.jsonl",
+  "planned": 2,
+  "deletedAttempts": [
+    "6ac531ec0031e6baafba",
+    "6ac531ec00367bfcd313"
+  ],
+  "deletedParticipants": [
+    "6ac531ec001eb9e1d8bf",
+    "6ac531ec001f70e076d2"
+  ],
+  "skipped": [],
+  "unresolved": [],
+  "finishedAt": "2026-10-06T17:39:08.841Z"
+}

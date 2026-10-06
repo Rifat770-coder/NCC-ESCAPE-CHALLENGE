@@ -1,0 +1,37 @@
+{
+  "/_not-found/page": {
+    "requests": 5,
+    "rawBytes": 302940,
+    "gzipBytes": 88634
+  },
+  "/admin/page": {
+    "requests": 7,
+    "rawBytes": 449065,
+    "gzipBytes": 135967
+  },
+  "/admin/dashboard/page": {
+    "requests": 9,
+    "rawBytes": 503285,
+    "gzipBytes": 153552
+  },
+  "/page": {
+    "requests": 11,
+    "rawBytes": 734159,
+    "gzipBytes": 215679
+  },
+  "/leaderboard/page": {
+    "requests": 9,
+    "rawBytes": 599458,
+    "gzipBytes": 184729
+  },
+  "/result/[id]/page": {
+    "requests": 10,
+    "rawBytes": 603921,
+    "gzipBytes": 187019
+  },
+  "/play/[id]/page": {
+    "requests": 10,
+    "rawBytes": 648954,
+    "gzipBytes": 197191
+  }
+}

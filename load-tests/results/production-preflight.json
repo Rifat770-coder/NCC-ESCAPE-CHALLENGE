@@ -1,0 +1,71 @@
+{
+  "target": "https://ncc-escape-challenge.vercel.app",
+  "measuredAt": "2026-10-06T17:37:24.568Z",
+  "endpoints": [
+    {
+      "path": "/",
+      "status": 200,
+      "durationMs": 230.6411,
+      "bytes": 41217,
+      "cacheControl": "public, max-age=0, must-revalidate",
+      "vercelCache": "HIT",
+      "redisCache": null,
+      "vercelId": "bom1::r2rzf-1791308244117-3f4917117557",
+      "assets": [
+        "/_next/static/css/55b028967383c173.css",
+        "/_next/static/chunks/webpack-9c40a54d0880bb74.js",
+        "/_next/static/chunks/fd9d1056-f9c99fe5a1be4ea4.js",
+        "/_next/static/chunks/117-995b59352cf51512.js",
+        "/_next/static/chunks/main-app-f1a455f1c1f7388d.js",
+        "/_next/static/chunks/631-6d8c25ffa5840dd4.js",
+        "/_next/static/chunks/454-5d2ce4f0ef04ace7.js",
+        "/_next/static/chunks/648-a02d8876d6efedab.js",
+        "/_next/static/chunks/137-80968247b9838682.js",
+        "/_next/static/chunks/708-1f4974fb62fdf9cc.js",
+        "/_next/static/chunks/858-0a00e8f816b64677.js",
+        "/_next/static/chunks/app/page-9dbe777c6eee83e4.js",
+        "/_next/static/chunks/app/layout-7a3fc402bdaf3f0a.js",
+        "/_next/static/chunks/polyfills-42372ed130431b0a.js",
+        "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FNCC%20NEW%20Version%20Logo.d8591d94.png&w=96&q=75"
+      ]
+    },
+    {
+      "path": "/api/settings",
+      "status": 200,
+      "durationMs": 456.20400000000006,
+      "bytes": 122,
+      "cacheControl": "public, max-age=0, must-revalidate",
+      "vercelCache": "MISS",
+      "redisCache": null,
+      "vercelId": "bom1::iad1::r2rzf-1791308244199-79dfe5b93e59"
+    },
+    {
+      "path": "/api/leaderboard",
+      "status": 200,
+      "durationMs": 437.90960000000007,
+      "bytes": 1681,
+      "cacheControl": "no-store",
+      "vercelCache": "MISS",
+      "redisCache": "MISS",
+      "vercelId": "bom1::iad1::r2rzf-1791308244652-77e32559275d"
+    }
+  ],
+  "settings": {
+    "gameActive": true,
+    "durationSeconds": 60,
+    "startingLives": 3,
+    "retryAllowed": false,
+    "maximumAttempts": 1
+  },
+  "baselineStats": {
+    "totalAttempts": 10,
+    "totalParticipants": 10,
+    "successfulMissions": 7,
+    "failedMissions": 3,
+    "prizesEligible": 7,
+    "prizesClaimed": 0,
+    "prizesRemaining": 7,
+    "completionRate": 70,
+    "fastestTimeMs": 39825
+  }
+}

@@ -1,0 +1,425 @@
+{
+  "label": "local-smoke",
+  "script": "smoke",
+  "run": "534da867",
+  "target": "http://127.0.0.1:3127",
+  "mode": "local-fixture",
+  "startedAt": "2026-10-06T17:36:22.653Z",
+  "generator": {
+    "node": "v25.8.2",
+    "platform": "win32"
+  },
+  "result": "PASS",
+  "thresholds": [
+    {
+      "metric": "operation_latency{operation:play_page}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:start}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "api_latency",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "api_latency",
+      "expression": "p(95)<1000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:homepage}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "semantic_failed",
+      "expression": "rate<0.01",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:result_page}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "journey_failed",
+      "expression": "rate<0.01",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:result}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:level2}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:static_asset}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:settings}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:leaderboard}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:leaderboard_page}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:level1}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:level3}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "http_req_failed",
+      "expression": "rate<0.01",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:level4}",
+      "expression": "p(99)<2000",
+      "passed": true
+    },
+    {
+      "metric": "operation_latency{operation:register}",
+      "expression": "p(99)<2000",
+      "passed": true
+    }
+  ],
+  "durationSeconds": 44.1902713,
+  "peakVUs": 2,
+  "requests": 35,
+  "requestsPerSecond": 0.7920295343377989,
+  "peakRequestsPerSecond": 6,
+  "latency": {
+    "count": 35,
+    "avg": 17.553162857142855,
+    "min": 0.3445,
+    "median": 6.9392,
+    "p90": 61.63702,
+    "p95": 66.68525999999999,
+    "p99": 74.29933599999998,
+    "max": 75.9091
+  },
+  "httpFailureRate": 0,
+  "semanticFailureRate": 0,
+  "journeyFailureRate": 0,
+  "semanticFailures": 0,
+  "successfulRequests": 35,
+  "statuses": {
+    "200": 32
+  },
+  "timeouts": 0,
+  "networkErrors": 0,
+  "missingRanks": 0,
+  "redisCache": {
+    "BYPASS": 8
+  },
+  "journeysStarted": 2,
+  "journeysCompleted": 2,
+  "dataReceived": 174208,
+  "dataSent": 5531,
+  "endpoints": {
+    "http://127.0.0.1:3127/api/admin/login": {
+      "count": 1,
+      "avg": 71.1745,
+      "min": 71.1745,
+      "median": 71.1745,
+      "p90": 71.1745,
+      "p95": 71.1745,
+      "p99": 71.1745,
+      "max": 71.1745,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 1
+      }
+    },
+    "http://127.0.0.1:3127/api/admin/stats": {
+      "count": 1,
+      "avg": 75.9091,
+      "min": 75.9091,
+      "median": 75.9091,
+      "p90": 75.9091,
+      "p95": 75.9091,
+      "p99": 75.9091,
+      "max": 75.9091,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 1
+      }
+    },
+    "http://127.0.0.1:3127/api/admin/logout": {
+      "count": 1,
+      "avg": 6.5965,
+      "min": 6.5965,
+      "median": 6.5965,
+      "p90": 6.5965,
+      "p95": 6.5965,
+      "p99": 6.5965,
+      "max": 6.5965,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 1
+      }
+    },
+    "homepage": {
+      "count": 2,
+      "avg": 61.416,
+      "min": 60.3109,
+      "median": 61.416,
+      "p90": 62.300079999999994,
+      "p95": 62.41059,
+      "p99": 62.498998,
+      "max": 62.5211,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 2
+      }
+    },
+    "settings": {
+      "count": 2,
+      "avg": 7.20715,
+      "min": 6.818,
+      "median": 7.20715,
+      "p90": 7.518470000000001,
+      "p95": 7.557385,
+      "p99": 7.588517,
+      "max": 7.5963,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 2
+      }
+    },
+    "leaderboard": {
+      "count": 8,
+      "avg": 4.586,
+      "min": 0.3445,
+      "median": 3.1618500000000003,
+      "p90": 10.460799999999999,
+      "p95": 10.58015,
+      "p99": 10.67563,
+      "max": 10.6995,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 8
+      }
+    },
+    "register": {
+      "count": 2,
+      "avg": 14.170200000000001,
+      "min": 6.6794,
+      "median": 14.170200000000001,
+      "p90": 20.16284,
+      "p95": 20.91192,
+      "p99": 21.511184,
+      "max": 21.661,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 2
+      }
+    },
+    "play_page": {
+      "count": 2,
+      "avg": 56.87125,
+      "min": 48.9812,
+      "median": 56.87125,
+      "p90": 63.18329000000001,
+      "p95": 63.972295,
+      "p99": 64.603499,
+      "max": 64.7613,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 2
+      }
+    },
+    "start": {
+      "count": 2,
+      "avg": 6.6263499999999995,
+      "min": 4.7296,
+      "median": 6.6263499999999995,
+      "p90": 8.143749999999999,
+      "p95": 8.333424999999998,
+      "p99": 8.485164999999999,
+      "max": 8.5231,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 2
+      }
+    },
+    "level1": {
+      "count": 2,
+      "avg": 7.4251499999999995,
+      "min": 6.2456,
+      "median": 7.4251499999999995,
+      "p90": 8.368789999999999,
+      "p95": 8.486744999999999,
+      "p99": 8.581109,
+      "max": 8.6047,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 2
+      }
+    },
+    "level2": {
+      "count": 2,
+      "avg": 6.6417,
+      "min": 5.8868,
+      "median": 6.6417,
+      "p90": 7.245620000000001,
+      "p95": 7.32111,
+      "p99": 7.381502,
+      "max": 7.3966,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 2
+      }
+    },
+    "level3": {
+      "count": 2,
+      "avg": 4.5651,
+      "min": 3.3009,
+      "median": 4.5651,
+      "p90": 5.57646,
+      "p95": 5.70288,
+      "p99": 5.804016,
+      "max": 5.8293,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 2
+      }
+    },
+    "level4": {
+      "count": 2,
+      "avg": 8.082149999999999,
+      "min": 6.9392,
+      "median": 8.082149999999999,
+      "p90": 8.996509999999999,
+      "p95": 9.110805,
+      "p99": 9.202240999999999,
+      "max": 9.2251,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 2
+      }
+    },
+    "result_page": {
+      "count": 2,
+      "avg": 30.371850000000002,
+      "min": 28.7594,
+      "median": 30.371850000000002,
+      "p90": 31.661810000000003,
+      "p95": 31.823055,
+      "p99": 31.952051,
+      "max": 31.9843,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 2
+      }
+    },
+    "result": {
+      "count": 2,
+      "avg": 4.59115,
+      "min": 3.1382,
+      "median": 4.59115,
+      "p90": 5.75351,
+      "p95": 5.898805,
+      "p99": 6.015041,
+      "max": 6.0441,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 2
+      }
+    },
+    "leaderboard_page": {
+      "count": 2,
+      "avg": 4.02825,
+      "min": 0.7784,
+      "median": 4.02825,
+      "p90": 6.6281300000000005,
+      "p95": 6.953115,
+      "p99": 7.213103,
+      "max": 7.2781,
+      "semanticFailures": 0,
+      "semanticFailureRate": 0,
+      "httpFailures": 0,
+      "statuses": {
+        "200": 2
+      }
+    }
+  },
+  "latencyByMinute": [
+    {
+      "utcMinute": "2026-10-06T17:36:00.000Z",
+      "count": 32,
+      "avg": 18.978440624999998,
+      "min": 0.7784,
+      "median": 7.337350000000001,
+      "p90": 62.30008,
+      "p95": 67.64724,
+      "p99": 74.441374,
+      "max": 75.9091
+    },
+    {
+      "utcMinute": "2026-10-06T17:37:00.000Z",
+      "count": 3,
+      "avg": 2.3502,
+      "min": 0.3445,
+      "median": 3.2301,
+      "p90": 3.42682,
+      "p95": 3.45141,
+      "p99": 3.471082,
+      "max": 3.476
+    }
+  ]
+}

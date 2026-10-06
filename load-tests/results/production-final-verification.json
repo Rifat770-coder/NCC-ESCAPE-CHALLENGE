@@ -1,0 +1,22 @@
+{
+  "target": "https://ncc-escape-challenge.vercel.app",
+  "verifiedAt": "2026-10-06T17:57:10.665Z",
+  "status": 200,
+  "stats": {
+    "totalAttempts": 10,
+    "totalParticipants": 10,
+    "successfulMissions": 7,
+    "failedMissions": 3,
+    "prizesEligible": 7,
+    "prizesClaimed": 0,
+    "prizesRemaining": 7,
+    "completionRate": 70,
+    "fastestTimeMs": 39825
+  },
+  "cache": "MISS",
+  "loadNamesOnPublicBoard": 0,
+  "remainingTestCounts": {
+    "skipped": 0,
+    "unresolved": 0
+  }
+}

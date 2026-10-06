@@ -51,9 +51,13 @@ export default function PlayPage() {
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
   // Guards so we only POST /api/attempt/fail ONCE per attempt.
   const failedForAttemptRef = useRef<string | null>(null);
+  const submissionPending = useRef(false);
+  const startPending = useRef(false);
+  const pendingLoads = useRef(new Set<string>());
 
   async function load() {
-    if (!attemptId) return;
+    if (!attemptId || pendingLoads.current.has(attemptId)) return;
+    pendingLoads.current.add(attemptId);
     setLoading(true);
     try {
       const res = await fetch("/api/attempt/start", {
@@ -97,6 +101,7 @@ export default function PlayPage() {
     } catch {
       toastPush("Network error loading attempt.", "error");
     } finally {
+      pendingLoads.current.delete(attemptId);
       setLoading(false);
     }
   }
@@ -157,6 +162,8 @@ export default function PlayPage() {
   }, [remainingMs, phase, attemptId, audio, toastPush]);
 
   async function begin() {
+    if (startPending.current) return;
+    startPending.current = true;
     setLoading(true);
     try {
       const res = await fetch("/api/attempt/start", {
@@ -180,12 +187,14 @@ export default function PlayPage() {
     } catch {
       toastPush("Network error.", "error");
     } finally {
+      startPending.current = false;
       setLoading(false);
     }
   }
 
   async function submitLevel(payload: any) {
-    if (!view) return;
+    if (!view || submissionPending.current) return;
+    submissionPending.current = true;
     setSubmitting(true);
     try {
       const res = await fetch("/api/attempt/submit", {
@@ -215,6 +224,7 @@ export default function PlayPage() {
       toastPush("Network error.", "error");
       audio.play("wrong");
     } finally {
+      submissionPending.current = false;
       setSubmitting(false);
     }
   }
