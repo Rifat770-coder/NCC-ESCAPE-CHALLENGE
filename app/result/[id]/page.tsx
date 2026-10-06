@@ -5,11 +5,12 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { BackgroundFX } from "@/components/effects/BackgroundFX";
-import { ArrowLeft, Download, Share2, Trophy, AlertTriangle } from "lucide-react";
+import { ArrowLeft, Download, Trophy, AlertTriangle } from "lucide-react";
 import { formatTime } from "@/lib/utils";
 import { useToast } from "@/components/ui/Toast";
 import { Reveal } from "@/components/ui/Reveal";
 import resultTemplate from "@/public/ncc-result-template.png";
+import { ShareResult } from "@/components/game/ShareResult";
 import { fetchSharedJSON } from "@/lib/client/shared-read";
 
 interface Attempt {
@@ -95,26 +96,6 @@ export default function ResultPage() {
     }
   }
 
-  async function share() {
-    const url = typeof window !== "undefined" ? window.location.href : "";
-    if ((navigator as any).share) {
-      try {
-        await (navigator as any).share({
-          title: "NCC Escape Challenge · Mission Completed",
-          text: `${data?.participantName ?? "I"} completed the NCC Escape Challenge in ${formatTime(data?.completionTimeMs ?? null)}!`,
-          url,
-        });
-      } catch {}
-    } else {
-      try {
-        await navigator.clipboard.writeText(url);
-        push("Link copied to clipboard.", "success");
-      } catch {
-        push("Could not share.", "error");
-      }
-    }
-  }
-
   if (!data) {
     return (
       <div className="grid min-h-screen place-items-center px-4 text-center">
@@ -180,9 +161,7 @@ export default function ResultPage() {
           <button onClick={download} disabled={downloading} className="btn-primary disabled:cursor-wait disabled:opacity-60">
             <Download className="h-4 w-4" /> {downloading ? "Generating PDF..." : "Download PDF"}
           </button>
-          <button onClick={share} className="btn-ghost">
-            <Share2 className="h-4 w-4" /> Share Result
-          </button>
+          <ShareResult resultId={params.id} />
           <Link href="/leaderboard" className="btn-ghost">
             <Trophy className="h-4 w-4" /> Leaderboard
           </Link>
