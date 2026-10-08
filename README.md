@@ -9,6 +9,25 @@ The experience is deliberately designed to feel like a small premium web game â€
 
 ---
 
+## Live demo
+
+[Play NCC Escape Challenge](https://ncc-escape-challenge.vercel.app/)
+
+## Screenshots
+
+### Landing page
+
+![NCC Escape Challenge landing page](docs/screenshots/landing-page.png)
+
+### Live leaderboard
+
+![NCC Escape Challenge live leaderboard](docs/screenshots/leaderboard.png)
+
+### Admin dashboard
+
+![NCC Escape Challenge admin dashboard](docs/screenshots/admin-dashboard.png)
+
+---
 ## Highlights
 
 - Cinematic landing page, animated NCC emblem, ambient particle effects
